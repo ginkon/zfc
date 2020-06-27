@@ -1,0 +1,111 @@
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+
+namespace WindowsFormsApp1
+{
+    public partial class Form1 : Form
+    {
+        public Form1()
+        {
+            InitializeComponent();
+        }
+
+        private void textBox2_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            String str = textBox1.Text;
+            List<string> a = new List<string>();
+            int num1 = 0;
+            for (int i = 1; i <= textBox1.Text.Length; i++)
+            {
+                a.Add(str.Substring(0, i));
+                num1++;
+            }
+            int n1 = num1 + 1;
+            string astr = string.Join(",", a.ToArray());
+            
+            listBox1.Items.Add("前缀为：Empty String," + astr.ToString());
+            listBox1.Items.Add("串x前缀个数为：" + n1.ToString());
+
+            //后缀
+            List<string> b = new List<string>();
+            int l = textBox1.Text.Length;
+            int num2 = 0;
+            for (int i = 1; i <= textBox1.Text.Length; i++)
+            {
+                b.Add(str.Substring(l - i, i));
+                num2++;
+            }
+            int n2 = num2 + 1;
+            string bstr = string.Join(",", b.ToArray());
+            listBox1.Items.Add("后缀为：Empty String," + bstr.ToString());
+            listBox1.Items.Add("串x后缀个数为：" + n2.ToString());
+
+            //除前缀和后缀的子串
+            List<string> c = new List<string>();
+            int num = 0;
+            for (int i = 1; i < textBox1.Text.Length; i++)
+            {
+                for (int j = 1; j + i < l; j++)
+                {
+                    if (str.Substring(j, i) == str.Substring(0, i) || str.Substring(j, i) == str.Substring(l - i, i))
+                        continue;
+
+                    if (c.Contains(str.Substring(j, i)))
+                        continue;
+                    c.Add(str.Substring(j, i));
+                    num++;
+                }
+            }
+        
+            string sub = string.Join(",", c.ToArray());
+            listBox1.Items.Add("串X除前缀和后缀外子串有：" + sub.ToString());
+            listBox1.Items.Add("串X除前缀和后缀外子串个数有：" + num.ToString());
+
+
+        }
+
+        private void textBox2_TextChanged_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void listBox1_SelectedIndexChanged_1(object sender, EventArgs e)
+        {
+
+        }
+    }
+}
+
